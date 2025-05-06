@@ -68,7 +68,6 @@ CREATE TABLE `3d_models` (
   `original_file_name` varchar(255) NOT NULL,
   `original_file_url` varchar(255) NOT NULL,
   `model_file_url` varchar(255) DEFAULT NULL,
-  `preview_url` varchar(255) DEFAULT NULL,
   `format` varchar(10) NOT NULL,
   `conversion_status` enum('pending','processing','completed','failed') DEFAULT 'pending',
   `conversion_settings` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '{}' CHECK (json_valid(`conversion_settings`)),

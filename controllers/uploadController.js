@@ -51,9 +51,9 @@ const upload = multer({
       size: file.size
     });
 
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/svg+xml'];
+    const allowedTypes = ['image/jpeg', 'image/jpg','image/png', 'image/svg+xml'];
     if (!allowedTypes.includes(file.mimetype)) {
-      return cb(new Error('Invalid file type. Only JPEG, PNG and SVG are allowed.'));
+      return cb(new Error('Invalid file type. Only JPEG, JPG PNG and SVG are allowed.'));
     }
     
     if (file.fieldname !== 'file') {
@@ -92,6 +92,7 @@ exports.handleLocalUpload = [
           'Description par défaut',
           req.user.id,
           fileUrl,
+          
           'draft'
         ]
       );
