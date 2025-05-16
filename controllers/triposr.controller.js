@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
-
+const FormData = require('form-data');
 class TriposrController {
   constructor() {
     this.uploadDir = './uploads3D';
@@ -16,15 +16,14 @@ class TriposrController {
 
   // Envoie l'image à TripoSR
   async convertImage(filePath) {
-    const formData = new FormData();
+    const form = new FormData();
     const file = fs.readFileSync(filePath);
     const blob = new Blob([file], { type: 'image/jpeg' });
     const filename = path.basename(filePath);
 
     // Utilisation de Blob + form-data (simulateur car Node.js n'a pas natif Blob)
     const { createReadStream } = require('fs');
-    const form = new FormData();
-    form.append('file', createReadStream(filePath));
+    form.append('file', createReadStream(filePath),filename);
 
     try {
       console.log('[TripoSR] Envoi de l’image vers /generate_3d...');
