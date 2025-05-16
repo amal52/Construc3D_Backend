@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const shareRoutes = require('./routes/shareRoutes');
 const modelRoutes = require('./routes/modelRoutes');
+const triposrRouter = require('./routes/triposrRoutes');
 const path = require('path');
 const pool = require('./config/db');
 dotenv.config();
@@ -18,7 +19,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true 
 }));
-
+// Utilisation du routeur
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -27,6 +28,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/share', shareRoutes);
 app.use('/api/models', modelRoutes);
+app.use('/triposr', triposrRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

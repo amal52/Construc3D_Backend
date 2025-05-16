@@ -27,7 +27,7 @@ class EmailService {
             <p>${senderEmail} vous invite à collaborer sur un modèle 3D.</p>
             <p>Votre rôle : ${role}</p>
             <p>Pour accéder au modèle, cliquez sur le lien suivant :</p>
-            <a href="${process.env.FRONTEND_URL}/view/${modelId}">Voir le modèle</a>
+            <a href="${process.env.FRONTEND_URL}/viewer/${modelId}">Voir le modèle</a>
         `
     };
 

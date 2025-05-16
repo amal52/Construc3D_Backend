@@ -26,7 +26,7 @@ const login = async (req, res, next) => {
     if (users.length === 0) {
       return res.status(401).json({ 
         success: false, 
-        error: { message: 'Invalid credentials' } 
+        error: { message: 'Vérifier votre email,il est incorrect' } 
       });
     }
 
@@ -41,7 +41,6 @@ const login = async (req, res, next) => {
     //   });
     // }
     // console.log('Comparaison de mot de passe:', isMatch);
-
 
     // Generate JWT token
     const token = jwt.sign(
