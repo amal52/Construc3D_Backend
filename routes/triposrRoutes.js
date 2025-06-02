@@ -39,7 +39,7 @@ router.get('/status', (req, res) => {
     res.json({ status: 'ok' });
 });
 
-// Route principale de conversion
+// Route principale de conversion(recoit le fichier mn platform)
 router.post('/convert', (req, res) => {
   Object.entries(corsHeaders).forEach(([key, value]) => {
     res.setHeader(key, value);
@@ -55,17 +55,17 @@ router.post('/convert', (req, res) => {
     }
 
     try {
-      // 1. Envoie l'image au serveur Flask
+      // naamlo appelle ll flask/triposr bch yaamel Envoie l'image au serveur Flask
       const tripData = await triposrController.convertImage(req.file.path);
 
-      // 2. Attends que la conversion soit terminée
+      // Attends que la conversion soit terminée
       await triposrController.pollStatus(tripData.request_id);
 
-      // 3. Télécharge le modèle généré
+      // Télécharge le modèle généré
       const outputPath = req.file.path.replace(/\.[^/.]+$/, '.obj');
       await triposrController.downloadModel(tripData.request_id, outputPath);
 
-      // 4. Renvoie le fichier .obj
+      // Renvoie le fichier .obj
       res.download(outputPath, (downloadErr) => {
         if (downloadErr) {
           console.error('Erreur lors du téléchargement:', downloadErr);
